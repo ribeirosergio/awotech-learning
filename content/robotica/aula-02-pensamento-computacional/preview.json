@@ -1,0 +1,13 @@
+{
+  "id": "robotica-02-pensamento-computacional",
+  "courseId": "robotica-basico",
+  "title": "Pensamento Computacional",
+  "order": 2,
+  "summary": "Organize instruções com sequência, decisões e repetição.",
+  "contentStatus": "draft",
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

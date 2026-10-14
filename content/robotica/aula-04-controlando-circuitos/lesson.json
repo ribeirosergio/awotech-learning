@@ -1,0 +1,35 @@
+{
+  "id": "robotica-04-controlando-circuitos",
+  "courseId": "robotica-basico",
+  "title": "Controlando os Circuitos",
+  "order": 4,
+  "summary": "Conheça o Arduino e use programação para controlar luzes.",
+  "contentStatus": "draft",
+  "objectives": [
+    "Reconhecer o Arduino como uma placa programável.",
+    "Entender como uma saída digital pode ligar e desligar um LED."
+  ],
+  "activities": [
+    "Piscar um LED com Arduino.",
+    "Construir um semáforo com Arduino."
+  ],
+  "requiredComponents": [
+    "arduino-uno-compatible",
+    "led-red",
+    "led-yellow",
+    "led-green",
+    "resistor-220",
+    "breadboard",
+    "jumper"
+  ],
+  "labStatus": "planned",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 4 — Controlando os Circuitos"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "robotica-01-introducao",
+  "courseId": "robotica-basico",
+  "title": "Introdução à Robótica",
+  "order": 1,
+  "summary": "Entenda o que é um robô e como hardware e software trabalham juntos.",
+  "contentStatus": "draft",
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

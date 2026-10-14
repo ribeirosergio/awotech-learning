@@ -1,0 +1,21 @@
+{
+  "id": "robotica-10-primeiro-robo-parte-3",
+  "courseId": "robotica-basico",
+  "title": "Meu Primeiro Robô - Parte 3",
+  "order": 10,
+  "summary": "Etapa do projeto final; conteúdo em preparação.",
+  "contentStatus": "outline",
+  "objectives": [],
+  "activities": [],
+  "requiredComponents": [],
+  "labStatus": "planned",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 10 — Meu Primeiro Robô - Parte 3"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

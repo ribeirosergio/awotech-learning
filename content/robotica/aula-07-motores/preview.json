@@ -1,0 +1,13 @@
+{
+  "id": "robotica-07-motores",
+  "courseId": "robotica-basico",
+  "title": "Ligando os Motores",
+  "order": 7,
+  "summary": "Controle o sentido de rotação e a parada de um motor DC.",
+  "contentStatus": "draft",
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "robotica-01-introducao",
+  "courseId": "robotica-basico",
+  "title": "Introdução à Robótica",
+  "order": 1,
+  "summary": "Entenda o que é um robô e como hardware e software trabalham juntos.",
+  "contentStatus": "draft",
+  "objectives": [
+    "Reconhecer robôs no cotidiano.",
+    "Distinguir hardware de software."
+  ],
+  "activities": [
+    "Pensar em comandos para um robô.",
+    "Descrever o que vem à cabeça ao pensar em um robô.",
+    "Imaginar um robô e explicar o que ele faria."
+  ],
+  "requiredComponents": [],
+  "labStatus": "not-applicable",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 1 — Introdução à Robótica"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  },
+  "activitiesInContent": true
+}

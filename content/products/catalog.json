@@ -1,0 +1,10 @@
+[
+  {
+    "id": "robotica-basico",
+    "type": "course",
+    "name": "Curso de Robótica",
+    "courseIds": ["robotica-basico"],
+    "accessMonths": 12,
+    "active": false
+  }
+]

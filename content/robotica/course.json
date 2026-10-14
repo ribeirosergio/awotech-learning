@@ -1,0 +1,22 @@
+{
+  "id": "robotica-basico",
+  "title": "Curso de Robótica",
+  "description": "Dos primeiros comandos aos circuitos, sensores e motores: uma jornada prática rumo ao seu primeiro robô autônomo.",
+  "status": "draft",
+  "lessonIds": [
+    "robotica-01-introducao",
+    "robotica-02-pensamento-computacional",
+    "robotica-03-circuitos",
+    "robotica-04-controlando-circuitos",
+    "robotica-05-ultrassonico",
+    "robotica-06-cancela",
+    "robotica-07-motores",
+    "robotica-08-primeiro-robo-parte-1",
+    "robotica-09-primeiro-robo-parte-2",
+    "robotica-10-primeiro-robo-parte-3"
+  ],
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aulas 1 a 10"
+  }
+}

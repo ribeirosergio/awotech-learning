@@ -1,0 +1,13 @@
+{
+  "id": "robotica-04-controlando-circuitos",
+  "courseId": "robotica-basico",
+  "title": "Controlando os Circuitos",
+  "order": 4,
+  "summary": "Conheça o Arduino e use programação para controlar luzes.",
+  "contentStatus": "draft",
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

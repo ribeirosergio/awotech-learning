@@ -1,0 +1,32 @@
+{
+  "id": "robotica-07-motores",
+  "courseId": "robotica-basico",
+  "title": "Ligando os Motores",
+  "order": 7,
+  "summary": "Controle o sentido de rotação e a parada de um motor DC.",
+  "contentStatus": "draft",
+  "objectives": [
+    "Distinguir um motor DC de um servo motor.",
+    "Entender a função do driver entre Arduino e motor."
+  ],
+  "activities": [
+    "Controlar um motor: girar em um sentido, parar, girar no outro sentido e parar novamente."
+  ],
+  "requiredComponents": [
+    "arduino-uno-compatible",
+    "motor-dc",
+    "driver-l293d",
+    "breadboard",
+    "jumper"
+  ],
+  "labStatus": "planned",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 7 — Ligando os Motores"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

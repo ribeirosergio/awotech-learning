@@ -1,0 +1,13 @@
+{
+  "id": "robotica-06-cancela",
+  "courseId": "robotica-basico",
+  "title": "A Cancela Inteligente",
+  "order": 6,
+  "summary": "Integre um sensor e um servo motor para abrir uma cancela.",
+  "contentStatus": "draft",
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

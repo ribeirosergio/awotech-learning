@@ -1,0 +1,31 @@
+{
+  "id": "robotica-02-pensamento-computacional",
+  "courseId": "robotica-basico",
+  "title": "Pensamento Computacional",
+  "order": 2,
+  "summary": "Organize instruções com sequência, decisões e repetição.",
+  "contentStatus": "draft",
+  "objectives": [
+    "Organizar uma sequência de passos em um algoritmo.",
+    "Reconhecer condicionais e repetições."
+  ],
+  "activities": [
+    "Escrever instruções para um robô montar um hambúrguer.",
+    "Ordenar os passos para escovar os dentes.",
+    "Corrigir a sequência de preparo de um sanduíche.",
+    "Completar a decisão sobre um pote de maionese aberto ou fechado.",
+    "Citar situações repetitivas do dia a dia."
+  ],
+  "requiredComponents": [],
+  "labStatus": "not-applicable",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 2 — Pensamento Computacional"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  },
+  "activitiesInContent": true
+}

@@ -1,0 +1,13 @@
+{
+  "id": "robotica-03-circuitos",
+  "courseId": "robotica-basico",
+  "title": "Circuitos Elétricos",
+  "order": 3,
+  "summary": "Explore circuitos abertos e fechados, LEDs e interruptores.",
+  "contentStatus": "draft",
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

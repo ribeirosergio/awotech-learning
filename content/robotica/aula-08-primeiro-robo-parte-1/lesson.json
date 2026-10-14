@@ -1,0 +1,21 @@
+{
+  "id": "robotica-08-primeiro-robo-parte-1",
+  "courseId": "robotica-basico",
+  "title": "Meu Primeiro Robô - Parte 1",
+  "order": 8,
+  "summary": "Etapa do projeto final; conteúdo em preparação.",
+  "contentStatus": "outline",
+  "objectives": [],
+  "activities": [],
+  "requiredComponents": [],
+  "labStatus": "planned",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 8 — Meu Primeiro Robô - Parte 1"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "sku": "arduino-uno-compatible",
+    "name": "Arduino Uno",
+    "category": "controller",
+    "notes": "Placa Uno identificada nas imagens a partir da aula 4."
+  },
+  {
+    "sku": "led-red",
+    "name": "LED vermelho",
+    "category": "output",
+    "notes": "Presente nos circuitos das aulas 3 e 4."
+  },
+  {
+    "sku": "led-yellow",
+    "name": "LED amarelo",
+    "category": "output",
+    "notes": "Semáforo da aula 4."
+  },
+  {
+    "sku": "led-green",
+    "name": "LED verde",
+    "category": "output",
+    "notes": "Semáforo da aula 4."
+  },
+  {
+    "sku": "resistor",
+    "name": "Resistor",
+    "category": "passive",
+    "notes": "Aula 3: valor e dimensionamento do circuito físico precisam de revisão."
+  },
+  {
+    "sku": "resistor-220",
+    "name": "Resistor de 220 Ω",
+    "category": "passive",
+    "notes": "Valor indicado na imagem do LED da aula 4; não generalizar para circuitos de 9 V."
+  },
+  {
+    "sku": "breadboard",
+    "name": "Protoboard",
+    "category": "connection",
+    "notes": "Presente nas montagens; modelo comercial e tamanho do kit ainda não definidos."
+  },
+  {
+    "sku": "jumper",
+    "name": "Fios de conexão",
+    "category": "connection",
+    "notes": "Fios das montagens; conectores, comprimentos e quantidades ainda não definidos."
+  },
+  {
+    "sku": "switch",
+    "name": "Botão / interruptor",
+    "category": "input",
+    "notes": "Aula 3: abertura e fechamento do circuito."
+  },
+  {
+    "sku": "battery-9v",
+    "name": "Bateria de 9 V",
+    "category": "power",
+    "notes": "Imagem da montagem com LED na aula 3. Não representa dimensionamento validado do kit."
+  },
+  {
+    "sku": "hc-sr04",
+    "name": "Sensor ultrassônico HC-SR04",
+    "category": "input",
+    "notes": "Identificado nas imagens das aulas 5 a 7."
+  },
+  {
+    "sku": "buzzer",
+    "name": "Buzzer",
+    "category": "output",
+    "notes": "Sensor de ré da aula 5 usa tone/noTone; tipo exato a confirmar."
+  },
+  {
+    "sku": "servo",
+    "name": "Servo motor",
+    "category": "output",
+    "notes": "Cancela da aula 6. Modelo comercial não confirmado; não assumir SG90."
+  },
+  {
+    "sku": "motor-dc",
+    "name": "Motor DC",
+    "category": "output",
+    "notes": "Aula 7: rotação contínua e mudança de sentido."
+  },
+  {
+    "sku": "driver-l293d",
+    "name": "Driver de motor L293D",
+    "category": "driver",
+    "notes": "Identificado na imagem da aula 7; alimentação e pinagem requerem revisão antes do laboratório."
+  }
+]

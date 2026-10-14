@@ -1,0 +1,13 @@
+packages:
+  - apps/*
+  - packages/*
+
+# A instalação é explícita; lint, testes e build não devem alterar dependências.
+verifyDepsBeforeRun: false
+
+allowBuilds:
+  esbuild: true
+
+minimumReleaseAgeExclude:
+  - react-dom@19.3.1
+  - react@19.3.1

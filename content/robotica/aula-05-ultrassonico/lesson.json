@@ -1,0 +1,33 @@
+{
+  "id": "robotica-05-ultrassonico",
+  "courseId": "robotica-basico",
+  "title": "Como Fazer um Robô Enxergar",
+  "order": 5,
+  "summary": "Use um sensor ultrassônico para perceber objetos próximos.",
+  "contentStatus": "draft",
+  "objectives": [
+    "Entender a medição de distância por ultrassom.",
+    "Relacionar a distância de um objeto a uma resposta do Arduino."
+  ],
+  "activities": [
+    "Ligar um sensor ultrassônico.",
+    "Construir um sensor de ré de um carro."
+  ],
+  "requiredComponents": [
+    "arduino-uno-compatible",
+    "hc-sr04",
+    "buzzer",
+    "breadboard",
+    "jumper"
+  ],
+  "labStatus": "planned",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 5 — Como Fazer um Robô Enxergar"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

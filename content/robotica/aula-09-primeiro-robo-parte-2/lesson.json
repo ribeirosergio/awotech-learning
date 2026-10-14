@@ -1,0 +1,21 @@
+{
+  "id": "robotica-09-primeiro-robo-parte-2",
+  "courseId": "robotica-basico",
+  "title": "Meu Primeiro Robô - Parte 2",
+  "order": 9,
+  "summary": "Etapa do projeto final; conteúdo em preparação.",
+  "contentStatus": "outline",
+  "objectives": [],
+  "activities": [],
+  "requiredComponents": [],
+  "labStatus": "planned",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 9 — Meu Primeiro Robô - Parte 2"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

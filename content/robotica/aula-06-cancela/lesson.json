@@ -1,0 +1,30 @@
+{
+  "id": "robotica-06-cancela",
+  "courseId": "robotica-basico",
+  "title": "A Cancela Inteligente",
+  "order": 6,
+  "summary": "Integre um sensor e um servo motor para abrir uma cancela.",
+  "contentStatus": "draft",
+  "objectives": [
+    "Diferenciar posição angular de rotação contínua.",
+    "Relacionar entrada, decisão e saída em um projeto."
+  ],
+  "activities": ["Fazer a cancela inteligente funcionar."],
+  "requiredComponents": [
+    "arduino-uno-compatible",
+    "hc-sr04",
+    "servo",
+    "breadboard",
+    "jumper"
+  ],
+  "labStatus": "planned",
+  "source": {
+    "file": "Apostila - Curso de Robótica.docx",
+    "section": "Aula 6 — A Cancela Inteligente"
+  },
+  "video": {
+    "provider": "youtube",
+    "videoId": "hcuA5wkgUNA",
+    "isPlaceholder": true
+  }
+}

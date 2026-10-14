@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.tmp/
+.pnpm-store/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+.DS_Store
+supabase/.temp/
+supabase/.branches/
