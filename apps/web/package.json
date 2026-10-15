@@ -12,6 +12,8 @@
     "@awotech/content-types": "workspace:*",
     "@awotech/course-engine": "workspace:*",
     "@awotech/ui": "workspace:*",
+    "@supabase/supabase-js": "^2.117.3",
+    "monaco-editor": "^0.57.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-markdown": "^10.0.0",

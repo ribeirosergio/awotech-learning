@@ -25,7 +25,7 @@ O runtime não importa React nem o simulador. O simulador pode consumir tipos de
 
 `course.json` define a sequência por `lessonIds`. Cada pasta de aula possui dois conjuntos de conteúdo: `preview.json` é público e contém identificação, título, resumo e vídeo de apresentação; `lesson.json`, `content.md` e `assets/` guardam o material integral da plataforma. O vídeo público é independente do vídeo da aula.
 
-`apps/web/src/content.ts` carrega somente cursos e prévias. `createPreviewCatalog` valida o contrato público, a ordem e os vínculos das aulas. O schema rejeita campos de material integral. `apps/web/src/platform/` preserva o loader completo e o renderer de Markdown/imagens/exercícios, sem importação pelas rotas públicas. Assim, o build público não inclui os textos e as imagens didáticas. O course engine completo continua validando Markdown e componentes nos testes.
+`apps/web/src/content.ts` carrega somente cursos e prévias. `createPreviewCatalog` valida o contrato público, a ordem e os vínculos das aulas. O schema rejeita campos de material integral. `apps/web/src/platform/` contém o loader completo e o renderer de Markdown/imagens/exercícios. A área `/app` carrega esses módulos sob demanda, depois dos guards de sessão e entitlement. O build contém os assets estáticos da plataforma; a separação de rotas não é DRM, conforme o trade-off aceito no handoff. RLS protege as concessões e o progresso no banco.
 
 Imagens ficam em `assets/` dentro de cada aula e são referenciadas por caminhos relativos no Markdown (`./assets/imagem.png`). O adaptador web resolve esses caminhos via `import.meta.glob` com `?url`; a UI acrescenta legendas e ampliação. Texto alternativo e legenda pertencem ao conteúdo, sem hardcode por aula. `activitiesInContent` indica que os exercícios completos já estão no Markdown. O campo opcional `video.isPlaceholder` diferencia um vídeo provisório de uma videoaula definitiva.
 
@@ -36,21 +36,29 @@ Os nomes das pastas são organização interna; as URLs usam IDs estáveis:
 /cursos
 /cursos/robotica-basico
 /cursos/robotica-basico/aulas/robotica-04-controlando-circuitos/previa
+/login
+/cadastro
+/esqueci-minha-senha
+/redefinir-senha
+/app/meus-cursos
+/app/curso/robotica-basico
+/app/curso/robotica-basico/aula/robotica-04-controlando-circuitos
+/app/conta
 ```
 
-Rotas e IDs desconhecidos exibem uma página de não encontrado. A URL anterior `/curso/:courseId/aula/:lessonId` redireciona para a prévia correspondente. Não há rotas fictícias de login/checkout. A navegação atual é uma prévia aberta com resumo e vídeo de apresentação; `status` é editorial e não substitui autorização. A área do aluno e seu controle de acesso ainda serão implementados.
+Rotas e IDs desconhecidos exibem uma página de não encontrado. A URL anterior `/curso/:courseId/aula/:lessonId` redireciona para a prévia correspondente. O site público apresenta um parágrafo e vídeo de apresentação; `status` é editorial e não substitui autorização. `/app` exige sessão, e o CourseGuard valida produto, início e expiração. Não há checkout nesta etapa.
 
-`requiredComponents` descreve os componentes documentados para a aula, não quantidades de um kit. Tipos genéricos são mantidos quando o modelo físico não está confirmado. Não existem `challenge.json`, `circuit.json` ou starter code sem validação da aula correspondente.
+`requiredComponents` descreve os componentes documentados para a aula, não quantidades de um kit. Tipos genéricos são mantidos quando o modelo físico não está confirmado. `type`, `hasLab` e `code` configuram a apresentação da aula e do editor. O rascunho inicial das aulas 4–7 contém apenas `setup` e `loop` vazios, sem resolver pinagens. Não existem `challenge.json` ou `circuit.json` executáveis.
 
 ## Próximo incremento
 
 1. Resolver e registrar a pinagem do LED da aula 4, harmonizando imagem, código e instruções.
-2. Criar configuração do circuito/desafio e Monaco, com workers locais e carregamento sob demanda.
+2. Criar configuração do circuito/desafio, reutilizando o Monaco já integrado com workers locais.
 3. Implementar gramática para `setup`, `loop`, `pinMode`, `digitalWrite` e `delay`, com diagnósticos compreensíveis. Código não suportado deve ser rejeitado, nunca ignorado ou executado como JavaScript.
 4. Implementar montagem guiada, validação separada do código, execução interrompível e feedback do LED.
-5. Validar o desafio por comportamento antes de registrar conclusão; só depois integrar persistência e acesso.
+5. Validar o desafio por comportamento para futura conclusão automática; a persistência atual usa conclusão manual.
 
-As etapas seguintes adicionam Supabase Auth/RLS, progresso e checkout hospedado Mercado Pago. A chave de serviço, assinatura de webhook e preço nunca devem vir do frontend. O produto está inativo e não há preço fictício.
+Supabase Auth/RLS, acesso manual e progresso estão implementados no frontend e nas migrations versionadas. O projeto Cloud está conectado ao ambiente local, e Auth/tabelas/RPC foram verificados com a chave pública. A validação de usuários reais e isolamento por RLS ainda está pendente. O guia é `docs/plataforma-supabase.md`. Checkout e operações de kits não foram implementados. O produto continua sem preço e sem compra habilitada.
 
 ## Referências técnicas consultadas
 

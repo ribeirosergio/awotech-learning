@@ -95,12 +95,13 @@ describe('conteúdo real da apostila', () => {
     expect(
       lessons.slice(7).every((lesson) => lesson.contentStatus === 'outline'),
     ).toBe(true);
-    expect(
-      lessons.every(
-        (lesson) =>
-          lesson.video?.isPlaceholder && lesson.video.videoId === 'hcuA5wkgUNA',
-      ),
-    ).toBe(true);
+    // As aulas reais possuem seu próprio vídeo configurado em lesson.json.
+    expect(lessons.every((lesson) => Boolean(lesson.video))).toBe(true);
+    expect(catalog.getCourse('robotica-basico')?.productId).toBe(
+      'robotica-basico',
+    );
+    for (const course of catalog.listCourses())
+      expect(course.productId).toBe(course.id);
     const products = readJson('content/products/catalog.json') as unknown[];
     for (const raw of products) {
       const product = productSchema.parse(raw);

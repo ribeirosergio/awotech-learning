@@ -3,7 +3,7 @@
   "courseId": "robotica-basico",
   "title": "Circuitos Elétricos",
   "order": 3,
-  "summary": "Explore circuitos abertos e fechados, LEDs e interruptores.",
+  "summary": "Nesta aula, vamos conhecer o caminho que permite aos componentes de um circuito funcionar e comparar circuitos abertos e fechados com o interruptor de luz de uma casa. Você será apresentado ao LED, ao resistor, à protoboard, aos fios e ao botão, entendendo o papel de cada um nas primeiras montagens. As atividades da plataforma relacionam essas ideias ao circuito humano e ao controle de um LED, preparando a transição para o Arduino.",
   "contentStatus": "draft",
   "video": {
     "provider": "youtube",

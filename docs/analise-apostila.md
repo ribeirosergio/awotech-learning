@@ -65,11 +65,11 @@ As aulas 8–10 possuem apenas títulos. O objetivo de construir um robô autôn
 
 O catálogo preserva as dez aulas e a ordem original, normalizando caixa/acentuação para leitura. As aulas 1–3 agora apresentam os conceitos, exemplos, imagens e enunciados dos exercícios da apostila. A introdução ao curso e a apresentação do professor foram incluídas na aula 1. As aulas 4–7 mantêm resumos e 8–10 são apenas esboços. Nenhuma delas recebe conclusão automática ou simulação. `requiredComponents` é uma referência pedagógica parcial, não uma lista de compra.
 
-Por solicitação do responsável pelo curso, as dez aulas usam o vídeo `hcuA5wkgUNA` como placeholder, com `video.isPlaceholder: true`. O player informa que ele não corresponde à aula. Para substituir por uma videoaula definitiva, trocar o ID e remover a flag ou defini-la como `false`.
+Por solicitação do responsável pelo curso, as dez prévias públicas usam o vídeo `hcuA5wkgUNA` como placeholder, com `video.isPlaceholder: true` em `preview.json`. O mesmo vídeo foi configurado também como provisório nas dez aulas completas, em `lesson.json.video`. Os dois contextos continuam independentes: cada aula receberá seu próprio vídeo completo, sem alterar a apresentação pública. Ao substituir o ID pelo definitivo, remover a flag de placeholder ou defini-la como `false`.
 
 ### Imagens incorporadas nas aulas 1–3
 
-**Separação da prévia pública:** o material descrito abaixo foi preservado para a plataforma. O catálogo público agora apresenta apenas `preview.json` (resumo e vídeo de apresentação). Textos integrais, exercícios e as 12 imagens não são importados pelo build público. A configuração do vídeo de prévia é independente da videoaula em `lesson.json`.
+**Separação da prévia pública:** o material descrito abaixo é apresentado na área do aluno após verificação de sessão e entitlement. O catálogo público apresenta apenas `preview.json` (um parágrafo e vídeo de apresentação). O material integral é carregado sob demanda na plataforma. Os assets permanecem estáticos no build, conforme o trade-off do handoff; não há DRM. A configuração do vídeo de prévia é independente da videoaula em `lesson.json`.
 
 Os arquivos foram copiados diretamente do DOCX, sem alteração, para `assets/` dentro de cada aula. O Vite publica os assets com URLs próprias; não há dependência do diretório temporário de extração. As imagens têm texto alternativo, legenda e link para ampliação.
 

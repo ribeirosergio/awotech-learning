@@ -10,6 +10,7 @@ export const courseSchema = z.object({
   id,
   title: z.string().min(1),
   description: z.string().min(1),
+  productId: id,
   status: z.enum(['draft', 'published']),
   lessonIds: z.array(id).min(1),
   source: sourceSchema,
@@ -21,6 +22,23 @@ export const lessonSchema = z.object({
   title: z.string().min(1),
   order: z.number().int().positive(),
   summary: z.string().min(1),
+  type: z.enum(['theory', 'practice', 'project']),
+  hasLab: z.boolean(),
+  code: z
+    .object({
+      language: z.enum([
+        'arduino',
+        'cpp',
+        'python',
+        'javascript',
+        'html',
+        'css',
+        'json',
+        'plaintext',
+      ]),
+      starterCode: z.string(),
+    })
+    .optional(),
   contentStatus: z.enum(['draft', 'outline', 'published']),
   objectives: z.array(z.string().min(1)),
   activities: z.array(z.string().min(1)),

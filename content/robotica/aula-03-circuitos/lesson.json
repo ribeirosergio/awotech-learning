@@ -27,10 +27,12 @@
     "file": "Apostila - Curso de Robótica.docx",
     "section": "Aula 3 — Circuitos Elétricos"
   },
+  "activitiesInContent": true,
+  "type": "practice",
+  "hasLab": true,
   "video": {
     "provider": "youtube",
     "videoId": "hcuA5wkgUNA",
     "isPlaceholder": true
-  },
-  "activitiesInContent": true
+  }
 }

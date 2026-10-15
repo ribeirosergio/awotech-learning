@@ -3,7 +3,7 @@
   "courseId": "robotica-basico",
   "title": "Como Fazer um Robô Enxergar",
   "order": 5,
-  "summary": "Use um sensor ultrassônico para perceber objetos próximos.",
+  "summary": "Nesta aula, o Arduino começa a perceber o ambiente com a ajuda de um sensor ultrassônico. Vamos conhecer a relação entre o envio de um sinal sonoro, seu retorno e a estimativa de distância até um objeto. As atividades apresentam a leitura do sensor e um aviso de ré com buzzer, conectando a percepção de objetos próximos às decisões que um projeto de robótica pode tomar.",
   "contentStatus": "draft",
   "video": {
     "provider": "youtube",

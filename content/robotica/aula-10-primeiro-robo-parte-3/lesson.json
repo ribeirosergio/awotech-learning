@@ -13,6 +13,8 @@
     "file": "Apostila - Curso de Robótica.docx",
     "section": "Aula 10 — Meu Primeiro Robô - Parte 3"
   },
+  "type": "project",
+  "hasLab": true,
   "video": {
     "provider": "youtube",
     "videoId": "hcuA5wkgUNA",

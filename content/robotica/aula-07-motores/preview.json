@@ -3,7 +3,7 @@
   "courseId": "robotica-basico",
   "title": "Ligando os Motores",
   "order": 7,
-  "summary": "Controle o sentido de rotação e a parada de um motor DC.",
+  "summary": "Nesta aula, vamos conhecer o motor DC e entender como sua rotação contínua se diferencia do movimento por posição de um servo. A apostila apresenta o driver de motor como a ligação entre os comandos do Arduino e a energia necessária para movimentar o motor. A atividade propõe girar em um sentido, parar, inverter o sentido e parar novamente, construindo a base para o movimento de um robô com rodas.",
   "contentStatus": "draft",
   "video": {
     "provider": "youtube",

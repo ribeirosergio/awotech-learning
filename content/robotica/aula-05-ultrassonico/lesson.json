@@ -25,6 +25,12 @@
     "file": "Apostila - Curso de Robótica.docx",
     "section": "Aula 5 — Como Fazer um Robô Enxergar"
   },
+  "type": "practice",
+  "hasLab": true,
+  "code": {
+    "language": "arduino",
+    "starterCode": "// Rascunho da aula. A execução será adicionada no AWOTech Lab.\n\nvoid setup() {\n\n}\n\nvoid loop() {\n\n}\n"
+  },
   "video": {
     "provider": "youtube",
     "videoId": "hcuA5wkgUNA",

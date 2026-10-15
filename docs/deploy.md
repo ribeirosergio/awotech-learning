@@ -24,6 +24,6 @@ Referências: [build do Pages](https://developers.cloudflare.com/pages/configura
 
 ## Supabase
 
-O bootstrap não precisa de banco. Na etapa de autenticação, criar o projeto, implementar e testar migrações com RLS, e preencher `apps/web/.env.local` a partir de `.env.example`. Somente URL pública e chave pública/publicável podem ter prefixo `VITE_`.
+O site público funciona sem banco configurado. A plataforma do aluno usa Supabase Cloud; seguir `docs/plataforma-supabase.md` para criar o projeto, aplicar as duas migrations com RLS e configurar Auth. Preencher `apps/web/.env.local` a partir de `.env.example`, e adicionar as mesmas duas variáveis públicas no ambiente de build do Cloudflare Pages. Variáveis `VITE_` são incorporadas no build, portanto qualquer alteração exige novo build/deploy.
 
-Nenhuma credencial foi incluída. Tokens Mercado Pago, chave de serviço Supabase e segredo de webhook pertencem às Edge Functions. Os diretórios `supabase/` registram os requisitos futuros sem disponibilizar endpoints incompletos.
+Somente URL pública e chave publicável/anon podem ir ao navegador. O build rejeita chaves privilegiadas. Nenhuma credencial foi incluída. Não há pagamento ou webhook implementado.

@@ -1,12 +1,10 @@
-# Migrações futuras
+# Migrações da plataforma
 
-Implementar na etapa de autenticação/acesso, com testes de políticas:
+Aplicar em ordem no SQL Editor do Supabase Cloud de desenvolvimento:
 
-- `profiles`: vinculado a `auth.users`, acesso somente ao próprio perfil.
-- `user_access`: produto, origem, início e expiração; o cliente apenas lê seus próprios acessos. Nunca conceder INSERT/UPDATE ao aluno.
-- `lesson_progress`: chave usuário/curso/aula; políticas de leitura/escrita restritas ao próprio usuário e consistência entre conclusão e data.
-- `payments`: identificação única do pagamento no provedor e auditoria server-side; sem escrita do cliente.
+- `202610140001_learning_access.sql`: `user_access`, RLS de leitura própria, revogação de escrita do cliente e RPC invoker com relógio do banco.
+- `202610140002_lesson_progress.sql`: `lesson_progress`, RLS de leitura própria e escrita com entitlement vigente; função de verificação e trigger de horários.
 
-Ativar RLS explicitamente em todas as tabelas expostas. Testar acesso anônimo, usuário A contra B e impossibilidade de conceder acesso ou alterar pagamentos pelo navegador. Não publicar um schema sem suas políticas.
+As duas tabelas possuem RLS. As funções não usam `security definer`; `search_path` é fixado. O script `../tests/rls-smoke.sql` testa acesso anônimo, usuário A contra B, concessão indevida e vigência no Cloud. A política de progresso usa `product_id = course_id`, relação canônica desta fase.
 
-Pedidos físicos entram apenas quando houver venda de kits. Acesso digital e entrega física são entidades distintas.
+Não há `profiles` duplicando identidade, pagamentos ou pedidos físicos nesta etapa. Identidade e senha são gerenciadas pelo Supabase Auth.

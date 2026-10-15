@@ -3,7 +3,7 @@
   "courseId": "robotica-basico",
   "title": "Pensamento Computacional",
   "order": 2,
-  "summary": "Organize instruções com sequência, decisões e repetição.",
+  "summary": "Como explicar uma tarefa para uma máquina? Nesta aula, vamos explorar a organização de instruções por meio de situações do cotidiano, como escovar os dentes e preparar um sanduíche. Você conhecerá os conceitos de sequência, algoritmo, decisão e repetição, percebendo por que a ordem dos passos e as condições de cada ação fazem diferença. Essa base de pensamento computacional vai ajudar a planejar os comandos dos próximos projetos.",
   "contentStatus": "draft",
   "video": {
     "provider": "youtube",

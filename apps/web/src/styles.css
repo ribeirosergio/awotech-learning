@@ -517,6 +517,78 @@ h3 {
 .skip-link:focus {
   top: 10px;
 }
+.auth-card {
+  max-width: 480px;
+  margin: 40px auto 70px;
+  padding: 32px;
+  border: 1px solid #dce0d6;
+  border-radius: 16px;
+  background: white;
+}
+.auth-card h1 {
+  font-size: 2rem;
+}
+.auth-card form {
+  display: grid;
+  gap: 20px;
+}
+.auth-card label {
+  display: grid;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.auth-card input {
+  width: 100%;
+  border: 1px solid #a8b59d;
+  border-radius: 8px;
+  padding: 12px;
+  font: inherit;
+  background: white;
+}
+.auth-card input:focus-visible {
+  outline: 3px solid #91a965;
+  outline-offset: 2px;
+}
+.auth-card .button {
+  width: 100%;
+}
+.auth-links {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+.auth-links a {
+  text-decoration: underline;
+}
+.form-error {
+  color: #9a3025;
+  background: #fbedeb;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+.button {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.button-secondary {
+  border: 1px solid #afbea0;
+  background: transparent;
+  color: #213a35;
+}
+.page-status {
+  padding: 48px 24px;
+  text-align: center;
+}
 @media (max-width: 850px) {
   .hero {
     padding: 36px;

@@ -3,7 +3,7 @@
   "courseId": "robotica-basico",
   "title": "Controlando os Circuitos",
   "order": 4,
-  "summary": "Conheça o Arduino e use programação para controlar luzes.",
+  "summary": "Depois de conhecer os circuitos elétricos, é hora de descobrir como o Arduino pode controlar seus componentes por meio de um programa. Nesta aula, vamos apresentar a placa programável e a ideia de uma saída digital, aproximando eletrônica, lógica e programação. As atividades propostas na apostila são piscar um LED e construir um semáforo, mostrando como instruções organizadas podem controlar uma sequência de luzes.",
   "contentStatus": "draft",
   "video": {
     "provider": "youtube",

@@ -9,6 +9,8 @@ import {
   type LessonPreview,
 } from '@awotech/content-types';
 
+export { hasCourseAccess, calculateProgress } from './student';
+
 export interface LessonContent {
   definition: LessonDefinition;
   markdown: string;

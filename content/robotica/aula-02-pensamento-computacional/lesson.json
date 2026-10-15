@@ -22,10 +22,12 @@
     "file": "Apostila - Curso de Robótica.docx",
     "section": "Aula 2 — Pensamento Computacional"
   },
+  "activitiesInContent": true,
+  "type": "theory",
+  "hasLab": false,
   "video": {
     "provider": "youtube",
     "videoId": "hcuA5wkgUNA",
     "isPlaceholder": true
-  },
-  "activitiesInContent": true
+  }
 }

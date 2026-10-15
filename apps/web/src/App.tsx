@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import {
   Link,
   Navigate,
@@ -10,6 +10,12 @@ import {
 } from 'react-router-dom';
 import { Badge, YouTubeVideo } from '@awotech/ui';
 import { catalog } from './content';
+import { RequireAuth } from './auth/RequireAuth';
+import { StudentProvider } from './platform/StudentProvider';
+import { useAuth } from './auth/AuthProvider';
+
+const StudentApp = lazy(() => import('./platform/StudentApp'));
+const AuthPage = lazy(() => import('./auth/AuthPages'));
 
 const lessonUrl = (courseId: string, lessonId: string) =>
   `/cursos/${courseId}/aulas/${lessonId}/previa`;
@@ -269,7 +275,7 @@ function NotFound() {
   );
 }
 
-export function App() {
+function PublicApp() {
   return (
     <>
       <ScrollToPage />
@@ -287,12 +293,29 @@ export function App() {
         </Link>
         <nav aria-label="Navegação principal">
           <NavLink to="/cursos">Cursos</NavLink>
+          <Link to="/app">Área do aluno</Link>
           <span className="preview-label">Prévia da plataforma</span>
         </nav>
       </header>
       <main id="conteudo" className="container">
         <Routes>
           <Route path="/" element={<CatalogPage />} />
+          <Route
+            path="/login"
+            element={<AuthPage key="login" mode="login" />}
+          />
+          <Route
+            path="/cadastro"
+            element={<AuthPage key="signup" mode="signup" />}
+          />
+          <Route
+            path="/esqueci-minha-senha"
+            element={<AuthPage key="forgot" mode="forgot" />}
+          />
+          <Route
+            path="/redefinir-senha"
+            element={<AuthPage key="reset" mode="reset" />}
+          />
           <Route path="/cursos" element={<CatalogPage />} />
           <Route path="/cursos/:courseId" element={<CoursePage />} />
           <Route
@@ -311,5 +334,33 @@ export function App() {
         <span>Aprenda criando o futuro.</span>
       </footer>
     </>
+  );
+}
+
+function PrivateApp() {
+  const { session } = useAuth();
+  return (
+    <RequireAuth>
+      <StudentProvider key={session?.user.id}>
+        <StudentApp />
+      </StudentProvider>
+    </RequireAuth>
+  );
+}
+
+export function App() {
+  return (
+    <Suspense
+      fallback={
+        <p className="page-status" role="status">
+          Carregando…
+        </p>
+      }
+    >
+      <Routes>
+        <Route path="/app/*" element={<PrivateApp />} />
+        <Route path="*" element={<PublicApp />} />
+      </Routes>
+    </Suspense>
   );
 }

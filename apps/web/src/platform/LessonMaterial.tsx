@@ -5,7 +5,7 @@ import { catalog, resolveLessonImage } from './content';
 
 const Markdown = lazy(() => import('react-markdown'));
 
-/** Reservado para a futura área do aluno, após implementar autenticação e acesso. */
+/** Material integral utilizado somente após autenticação e verificação de acesso. */
 export function LessonMaterial({ lesson }: { lesson: LessonContent }) {
   const { definition, markdown } = lesson;
   return (
@@ -94,12 +94,12 @@ export function LessonMaterial({ lesson }: { lesson: LessonContent }) {
           </p>
         </section>
       )}
-      {definition.labStatus === 'planned' && (
+      {definition.hasLab && (
         <div className="lab-notice">
           <span aria-hidden="true">⌘</span>
           <div>
-            <h2>Um espaço para experimentar</h2>
-            <p>O laboratório virtual desta aula está em preparação.</p>
+            <h2>Atividade prática · AWOTech Lab</h2>
+            <p>Laboratório disponível em breve.</p>
           </div>
         </div>
       )}

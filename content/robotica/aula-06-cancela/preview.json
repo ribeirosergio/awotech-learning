@@ -3,7 +3,7 @@
   "courseId": "robotica-basico",
   "title": "A Cancela Inteligente",
   "order": 6,
-  "summary": "Integre um sensor e um servo motor para abrir uma cancela.",
+  "summary": "Como transformar a percepção de um objeto em movimento? Nesta aula, vamos conhecer o servo motor e seu controle por posição angular para criar uma cancela inteligente. O projeto reúne o sensor ultrassônico como entrada, o Arduino na tomada de decisão e o servo como saída. Essa combinação mostra como diferentes componentes podem trabalhar juntos para responder à aproximação de um objeto.",
   "contentStatus": "draft",
   "video": {
     "provider": "youtube",

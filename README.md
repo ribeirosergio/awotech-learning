@@ -1,6 +1,6 @@
 # AWOTech Learning
 
-Base inicial da plataforma de cursos práticos de tecnologia. O repositório começou apenas com o handoff e a apostila; esta entrega implementa o bootstrap local e uma primeira navegação de conteúdo estático.
+Plataforma de cursos práticos de tecnologia com site público, prévias e área do aluno em React, TypeScript e Vite. Cursos e materiais são estáticos/versionados; identidade, acessos e progresso usam Supabase Cloud.
 
 ## Executar
 
@@ -12,7 +12,7 @@ pnpm dev
 ```
 
 Abra o endereço informado pelo Vite, normalmente `http://127.0.0.1:5173`.
-Não é necessário configurar Supabase ou outras credenciais para executar esta prévia.
+O site público funciona sem credenciais. Para usar cadastro, login e `/app`, crie um projeto Supabase Cloud, aplique as duas migrations e configure `apps/web/.env.local`. O procedimento está em [Plataforma e Supabase](docs/plataforma-supabase.md). Não é necessário Docker ou PostgreSQL local.
 
 ```sh
 pnpm check       # lint, formatação, testes, TypeScript e build
@@ -32,7 +32,7 @@ packages/arduino-runtime/ Contratos de IR/eventos; parser e executor pendentes
 packages/simulator/       Contratos de montagem e simulação; engine pendente
 packages/ui/              Elementos visuais compartilhados e player YouTube
 content/                  Cursos, Markdown, componentes e produtos estáticos
-supabase/                 Espaço e requisitos para as futuras migrações/funções
+supabase/                 Migrations/RLS, concessão manual e testes SQL no Cloud
 docs/                     Análise da apostila, arquitetura e preparação de deploy
 tests/                    Validação do conteúdo real e regras do course engine
 scripts/                  Inspeção local e reproduzível do DOCX
@@ -41,18 +41,22 @@ scripts/                  Inspeção local e reproduzível do DOCX
 ## Disponível nesta etapa
 
 - Catálogo público com resumo e vídeo de apresentação de cada aula, sem exibir o material integral.
-- Dez aulas na ordem da apostila. O conteúdo ampliado das aulas 1–3, com as 12 imagens originais e exercícios completos, está preservado para a futura área do aluno.
+- Área `/app` com autenticação por email/senha, sessão persistente, recuperação de senha e logout.
+- Meus cursos filtrado por entitlement, CourseGuard, curso e aula renderizados por configuração.
+- Dez aulas na ordem da apostila. As aulas 1–3 contêm o material ampliado com as 12 imagens e exercícios; 4–7 mantêm os resumos existentes e 8–10 são esboços.
+- Conclusão manual persistente, progresso por curso e navegação anterior/próxima.
+- Monaco reutilizável, workers locais e rascunho por aluno/aula, disponível nas aulas 4–7.
 - Validação dos arquivos estáticos, referências de componentes e ordem pedagógica.
-- Vídeo YouTube `hcuA5wkgUNA`, escolhido pelo responsável pelo curso, como placeholder das prévias. Cada `preview.json` tem configuração de vídeo independente de `lesson.json`.
+- Vídeo YouTube `hcuA5wkgUNA`, escolhido pelo responsável pelo curso, como placeholder das prévias e das dez aulas completas. Cada `lesson.json` possui vídeo independente de `preview.json`, para receber sua videoaula definitiva.
 - Modelos iniciais de produtos e kits, sem compra habilitada nem BOM presumido.
 - Build estático em `apps/web/dist`, preparado para Cloudflare Pages.
 
-O conteúdo está marcado como prévia e **não é um curso publicado**. Laboratório, Monaco, desafios, autenticação, controle de acesso, progresso, pagamentos e operação de kits ainda serão implementados. Os pacotes de runtime e simulador contêm somente contratos; não há execução de código do aluno nesta etapa.
+O curso ainda está em preparação. As aulas completas usam um vídeo provisório até receberem seus próprios vídeos definitivos. O Supabase Cloud está conectado ao ambiente local; Auth, tabelas e RPC foram consultados com a chave pública, mas os fluxos autenticados reais ainda precisam de validação. Laboratório, desafios, execução, pagamentos e operação de kits ficam para as próximas fases. Os pacotes de runtime e simulador mantêm somente os contratos anteriores.
 
 ## Fontes e próximos passos
 
 A [apostila](<Apostila - Curso de Robótica.docx>) prevalece para conteúdo pedagógico. O [handoff](AWOTECH_CODEX_HANDOFF.md) define a arquitetura e as decisões de produto.
 
-Leia a [análise da apostila](docs/analise-apostila.md), a [arquitetura](docs/arquitetura.md) e as [instruções de publicação](docs/deploy.md). A divergência entre pino 11 no diagrama do LED e pino 13 no código precisa ser resolvida antes de publicar o primeiro laboratório.
+Leia a [configuração da plataforma, concessão de acesso e roteiro de testes](docs/plataforma-supabase.md), a [análise da apostila](docs/analise-apostila.md), a [arquitetura](docs/arquitetura.md) e as [instruções de publicação](docs/deploy.md). A divergência entre pino 11 no diagrama do LED e pino 13 no código precisa ser resolvida antes do primeiro laboratório.
 
 Nenhum recurso remoto, banco, pagamento ou deploy foi criado nesta entrega.

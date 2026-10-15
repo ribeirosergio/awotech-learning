@@ -3,7 +3,7 @@
   "courseId": "robotica-basico",
   "title": "Introdução à Robótica",
   "order": 1,
-  "summary": "Entenda o que é um robô e como hardware e software trabalham juntos.",
+  "summary": "Nesta aula, você vai descobrir como a robótica está presente no dia a dia, de um aspirador automático aos semáforos, braços industriais e portões eletrônicos. Vamos conhecer a diferença entre hardware e software e entender como instruções controlam a parte física de uma máquina. Esse primeiro contato também convida você a imaginar um robô e a tarefa que gostaria que ele realizasse, abrindo caminho para os projetos do curso.",
   "contentStatus": "draft",
   "video": {
     "provider": "youtube",
