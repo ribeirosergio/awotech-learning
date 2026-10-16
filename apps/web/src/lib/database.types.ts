@@ -28,6 +28,20 @@ export type LessonProgress = {
 export interface Database {
   public: {
     Tables: {
+      profiles: {
+        Row: import('./student-profile').StudentProfile;
+        Insert: Partial<import('./student-profile').ProfileData> & {
+          user_id: string;
+        };
+        Update: Partial<import('./student-profile').ProfileData>;
+        Relationships: [];
+      };
+      lesson_evidence: {
+        Row: import('@awotech/course-engine').LessonEvidence;
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
       user_access: {
         Row: UserAccess;
         Insert: never;
@@ -46,6 +60,18 @@ export interface Database {
     };
     Views: Record<string, never>;
     Functions: {
+      save_lesson_evidence: {
+        Args: {
+          p_user_id: string;
+          p_course_id: string;
+          p_lesson_id: string;
+          p_video_id: string;
+          p_duration: number;
+          p_ranges: Json;
+          p_activities: string[];
+        };
+        Returns: import('@awotech/course-engine').LessonEvidence;
+      };
       get_my_access: { Args: Record<string, never>; Returns: Json };
       has_course_access: {
         Args: { requested_course_id: string };

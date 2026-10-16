@@ -1,0 +1,211 @@
+.awotech-lab {
+  margin-top: 40px;
+  min-width: 0;
+}
+.lab-heading,
+.lab-code-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.lab-heading h2 {
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+}
+.lab-heading p {
+  margin-bottom: 12px;
+}
+.lab-status {
+  border-radius: 20px;
+  padding: 8px 14px;
+  background: #e6e9e0;
+  color: #4b5c49;
+  font-size: 0.8rem;
+}
+.lab-status.is-running {
+  background: #dcebd3;
+  color: #275b27;
+}
+.lab-instructions {
+  padding: 20px 24px;
+  background: #edf1e6;
+  border: 1px solid #dce0d6;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+.awotech-lab h3 {
+  font-size: 1rem;
+  margin: 0 0 14px;
+}
+.lab-instructions li,
+.lab-instructions p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+.lab-instructions p {
+  margin: 12px 0 0;
+}
+.lab-instructions ol {
+  list-style: decimal;
+  padding-left: 20px;
+  margin: 0;
+}
+.lab-text-button:disabled,
+.lab-wire-list button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+.lab-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 20px;
+}
+.lab-panel {
+  min-width: 0;
+  border: 1px solid #d4ddce;
+  border-radius: 12px;
+  padding: 18px;
+  background: white;
+}
+.lab-board-scroll {
+  overflow-x: auto;
+}
+.lab-board {
+  display: block;
+  width: 100%;
+  min-width: 520px;
+  touch-action: none;
+}
+.lab-terminal {
+  cursor: crosshair;
+  outline: none;
+}
+.lab-terminal:focus circle:last-child {
+  stroke: #bd6c1f;
+  stroke-width: 5;
+}
+.lab-terminal[aria-disabled='true'] {
+  cursor: default;
+}
+.lab-circuit-switch {
+  cursor: pointer;
+  outline: none;
+}
+.lab-circuit-switch:hover > rect {
+  stroke: #2d612f;
+  stroke-width: 2;
+}
+.lab-circuit-switch:focus-visible > rect {
+  stroke: #bd6c1f;
+  stroke-width: 3;
+}
+.lab-connection-hint {
+  font-size: 0.78rem;
+  color: #586b55;
+  margin: 12px 0;
+}
+.lab-wire-list {
+  list-style: none;
+  margin: 12px 0;
+  padding: 0;
+  font-size: 0.75rem;
+}
+.lab-wire-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #e4e9de;
+  padding: 9px 0;
+}
+.lab-wire-list button,
+.lab-text-button {
+  font: inherit;
+  font-size: 0.78rem;
+  color: #386035;
+  border: 0;
+  background: none;
+  padding: 6px 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lab-readings {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+  border-top: 1px solid #e4e9de;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+.lab-readings [data-led='on'] {
+  color: #a53023;
+}
+.lab-code-heading {
+  margin-bottom: 12px;
+}
+.lab-code-heading h3 {
+  margin: 0;
+}
+.lab-language-help {
+  font-size: 0.78rem;
+  line-height: 1.65;
+  margin-top: 14px;
+  color: #51674c;
+}
+.lab-language-help summary {
+  cursor: pointer;
+}
+.lab-language-help p {
+  font-size: inherit;
+  margin-top: 12px;
+}
+.lab-toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.lab-toolbar button[aria-pressed='true'] {
+  background: #dcebd3;
+  border-color: #7d9a65;
+}
+.lab-feedback {
+  border-left: 3px solid #5b7b3b;
+  padding: 12px 18px;
+  background: #edf1e6;
+  border-radius: 4px;
+}
+.lab-feedback p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+.lab-error {
+  white-space: pre-wrap;
+}
+.awotech-lab > .muted {
+  font-size: 0.75rem;
+}
+@media (max-width: 1450px) {
+  .lab-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .lab-panel {
+    padding: 12px;
+  }
+  .lab-instructions {
+    padding: 16px;
+  }
+  .lab-toolbar .button {
+    width: 100%;
+  }
+  .lab-wire-list li {
+    align-items: flex-start;
+  }
+}

@@ -1,12 +1,5 @@
 import { lazy, Suspense, useState } from 'react';
-import {
-  Link,
-  NavLink,
-  Navigate,
-  Route,
-  Routes,
-  useNavigate,
-} from 'react-router-dom';
+import { Link, NavLink, Navigate, Route, Routes } from 'react-router-dom';
 import { calculateProgress } from '@awotech/course-engine';
 import { useAuth } from '../auth/AuthProvider';
 import { supabase } from '../lib/supabase';
@@ -14,13 +7,13 @@ import { catalog } from '../content';
 import { CourseGuard } from './CourseGuard';
 import { useStudent } from './StudentProvider';
 import { Progress } from './Progress';
+import Account from './Account';
 import './platform.css';
 
 const CourseLearning = lazy(() => import('./CourseLearning'));
 
 export default function StudentApp() {
   const { session } = useAuth();
-  const navigate = useNavigate();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   async function logout() {
@@ -30,7 +23,8 @@ export default function StudentApp() {
     try {
       const { error } = await supabase.auth.signOut({ scope: 'local' });
       if (error) throw error;
-      navigate('/login', { replace: true });
+      // Recarrega a página pública após limpar a sessão, inclusive o estado em memória.
+      window.location.replace('/');
     } catch {
       setError('Não foi possível sair. Tente novamente.');
     } finally {
@@ -46,30 +40,32 @@ export default function StudentApp() {
         <Link className="brand" to="/app">
           AWOTech <small>LEARNING</small>
         </Link>
-        <Link to="/">Site público ↗</Link>
+        <nav className="student-top-navigation" aria-label="Área do aluno">
+          <NavLink to="/app/meus-cursos">
+            <span aria-hidden="true">▦</span> Meus cursos
+          </NavLink>
+          <NavLink to="/app/conta">
+            <span aria-hidden="true">◎</span> Minha conta
+          </NavLink>
+        </nav>
+        <span className="student-header-email" title={session?.user.email}>
+          {session?.user.email}
+        </span>
+        <button
+          className="button button-lime student-logout"
+          onClick={logout}
+          disabled={busy}
+        >
+          {busy ? 'Saindo…' : 'Sair'}
+        </button>
       </header>
       <div className="student-layout">
-        <aside className="student-navigation">
-          <p className="eyebrow">PLATAFORMA DO ALUNO</p>
-          <nav aria-label="Área do aluno">
-            <NavLink to="/app/meus-cursos">Meus cursos</NavLink>
-            <NavLink to="/app/conta">Minha conta</NavLink>
-          </nav>
-          <p className="student-email">{session?.user.email}</p>
-          <button
-            className="button button-secondary"
-            onClick={logout}
-            disabled={busy}
-          >
-            {busy ? 'Saindo…' : 'Sair'}
-          </button>
+        <main id="aula-conteudo" className="student-main">
           {error && (
             <p className="form-error" role="alert">
               {error}
             </p>
           )}
-        </aside>
-        <main id="aula-conteudo" className="student-main">
           <Suspense fallback={<p role="status">Carregando…</p>}>
             <Routes>
               <Route index element={<Navigate replace to="meus-cursos" />} />
@@ -103,8 +99,17 @@ function MyCourses() {
     .filter((course) => student.hasAccess(course.productId));
   return (
     <section>
-      <p className="eyebrow">SUA JORNADA</p>
-      <h1>Meus cursos</h1>
+      <div className="student-welcome">
+        <div>
+          <p className="eyebrow">APRENDA. EXPERIMENTE. CONSTRUA.</p>
+          <h1>Meus cursos</h1>
+          <p>
+            Cada descoberta abre caminho para sua próxima ideia. Continue de
+            onde parou.
+          </p>
+        </div>
+        <span aria-hidden="true">✳</span>
+      </div>
       {student.loading ? (
         <p role="status">Carregando seus cursos…</p>
       ) : student.error ? (
@@ -131,6 +136,12 @@ function MyCourses() {
             const progress = calculateProgress(course, student.progress);
             return (
               <article className="student-course-card" key={course.id}>
+                <div className="student-course-banner">
+                  <span className="mono">
+                    SUA TRILHA / {course.lessonIds.length} AULAS
+                  </span>
+                  <span aria-hidden="true">&lt; / &gt;</span>
+                </div>
                 <h2>{course.title}</h2>
                 <p>{course.description}</p>
                 <Progress {...progress} />
@@ -148,24 +159,6 @@ function MyCourses() {
           })}
         </div>
       )}
-    </section>
-  );
-}
-
-function Account() {
-  const { session } = useAuth();
-  return (
-    <section>
-      <p className="eyebrow">SEUS DADOS</p>
-      <h1>Minha conta</h1>
-      <div className="student-course-card">
-        <h2>Email</h2>
-        <p>{session?.user.email}</p>
-        <p>Para alterar sua senha, solicite um link de recuperação.</p>
-        <Link className="button" to="/esqueci-minha-senha">
-          Recuperar senha
-        </Link>
-      </div>
     </section>
   );
 }

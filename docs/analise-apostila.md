@@ -35,7 +35,7 @@ A primeira montagem de LED está na aula 3 e usa bateria de 9 V, sem programaç�
 
 Na aula 4, `image13.png` liga o LED ao pino **11**, com resistor identificado como **220 Ω** e retorno ao GND. Já `image5.png` usa **13** em `pinMode` e nos dois `digitalWrite`, com esperas de **1000 ms**. Os pinos 8 e 13 citados genericamente no handoff não resolvem essa divergência da própria apostila.
 
-**Decisão deste bootstrap:** cadastrar o tema e os componentes, sem publicar pinagem, `circuit.json`, starter code ou desafio. A próxima implementação deve harmonizar desenho e código com uma decisão editorial explícita, em vez de apresentar uma montagem incompatível.
+**Decisão deste bootstrap:** cadastrar o tema e os componentes, sem publicar pinagem, `circuit.json`, starter code ou desafio. **Atualização de 15/10/2026:** o primeiro AWOTech Lab harmoniza montagem e código em D13, seguindo a imagem 5, e mantém resistor de 220 Ω. A decisão e os limites estão em `docs/awotech-lab.md`; o DOCX original não foi alterado.
 
 ### Semáforo
 

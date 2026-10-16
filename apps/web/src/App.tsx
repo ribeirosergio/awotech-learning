@@ -1,4 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
+import LandingPage from './public/LandingPage';
+import PublicHeader from './public/PublicHeader';
 import {
   Link,
   Navigate,
@@ -21,130 +23,12 @@ const lessonUrl = (courseId: string, lessonId: string) =>
   `/cursos/${courseId}/aulas/${lessonId}/previa`;
 
 function ScrollToPage() {
-  const { pathname } = useLocation();
+  const { pathname, hash, key } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }, [pathname, hash, key]);
   return null;
-}
-
-function CircuitIllustration() {
-  return (
-    <svg
-      viewBox="0 0 400 300"
-      className="w-full"
-      role="img"
-      aria-label="Ilustração de uma placa conectada a uma luz, representando os projetos de robótica"
-    >
-      <defs>
-        <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
-          <circle cx="2" cy="2" r="1" fill="#ffffff" opacity=".12" />
-        </pattern>
-      </defs>
-      <rect width="400" height="300" fill="url(#dots)" />
-      <path
-        d="M120 70H300V133M120 230H300V170"
-        fill="none"
-        stroke="#c7e66b"
-        strokeWidth="5"
-        strokeLinejoin="round"
-      />
-      <rect
-        x="45"
-        y="40"
-        width="150"
-        height="220"
-        rx="20"
-        fill="#24645b"
-        stroke="#69a18f"
-      />
-      <rect x="85" y="105" width="70" height="100" rx="5" fill="#102c29" />
-      <rect x="95" y="30" width="50" height="40" rx="4" fill="#c1cec8" />
-      {[80, 105, 130, 155, 180, 205, 230].map((y) => (
-        <g key={y}>
-          <circle cx="60" cy={y} r="4" fill="#c7e66b" />
-          <circle cx="180" cy={y} r="4" fill="#c7e66b" />
-        </g>
-      ))}
-      <circle cx="300" cy="150" r="44" fill="#c7e66b" opacity=".12" />
-      <path d="M281 160v-20a19 19 0 0 1 38 0v20Z" fill="#c7e66b" />
-      <path d="M290 160v23M310 160v23" stroke="#c1cec8" strokeWidth="5" />
-      <text x="104" y="160" fill="#c7e66b" fontSize="24" fontFamily="monospace">
-        01
-      </text>
-      <text x="244" y="244" fill="#d9e7e0" fontSize="12" fontFamily="monospace">
-        IDEIA → AÇÃO
-      </text>
-    </svg>
-  );
-}
-
-function CatalogPage() {
-  return (
-    <>
-      <section className="hero">
-        <div>
-          <p className="eyebrow">TECNOLOGIA SE APRENDE FAZENDO</p>
-          <h1>
-            Uma ideia.
-            <br />
-            Infinitas possibilidades.
-          </h1>
-          <p className="hero-copy">
-            Descubra como a lógica, a eletrônica e a programação se encontram
-            para dar vida às suas ideias.
-          </p>
-          <a className="button button-lime" href="#cursos">
-            Explore os cursos <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <div className="hero-illustration">
-          <CircuitIllustration />
-        </div>
-      </section>
-      <section id="cursos" className="section-space">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">SEU PRÓXIMO PROJETO COMEÇA AQUI</p>
-            <h2>Explore uma nova habilidade</h2>
-          </div>
-          <Badge>Catálogo em preparação</Badge>
-        </div>
-        <div className="course-grid">
-          {catalog.listCourses().map((course) => (
-            <article key={course.id} className="course-card">
-              <div className="course-cover">
-                <span className="mono">01 / ROBÓTICA</span>
-                <span aria-hidden="true" className="cover-symbol">
-                  &lt; / &gt;
-                </span>
-                <Badge>Do conceito à construção</Badge>
-              </div>
-              <div className="course-card-body">
-                <p className="eyebrow">LÓGICA · ELETRÔNICA · PROGRAMAÇÃO</p>
-                <h3>{course.title}</h3>
-                <p>{course.description}</p>
-                <div className="course-card-footer">
-                  <span>{course.lessonIds.length} aulas na trilha</span>
-                  <Link to={`/cursos/${course.id}`}>
-                    Conhecer a trilha <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="learning-path">
-        <p className="eyebrow">DO PRIMEIRO CONCEITO AO PRIMEIRO ROBÔ</p>
-        <h2>Entender. Experimentar. Criar.</h2>
-        <p>
-          A trilha começa com instruções simples, passa por circuitos e sensores
-          e chega ao projeto de um robô autônomo.
-        </p>
-      </section>
-    </>
-  );
 }
 
 function CoursePage() {
@@ -161,7 +45,7 @@ function CoursePage() {
         <p className="eyebrow">TRILHA DE APRENDIZAGEM</p>
         <h1>{course.title}</h1>
         <p>{course.description}</p>
-        <Badge>{lessons.length} aulas · Conteúdo em preparação</Badge>
+        <Badge>{lessons.length} aulas · Do conceito à prática</Badge>
       </div>
       <div className="syllabus">
         {lessons.map((lesson) => (
@@ -177,9 +61,7 @@ function CoursePage() {
               <h2>{lesson.title}</h2>
               <p>{lesson.summary}</p>
             </div>
-            <span className="lesson-status">
-              {lesson.contentStatus === 'outline' ? 'Planejada' : 'Prévia'}
-            </span>
+            <span className="lesson-status">Prévia</span>
             <span aria-hidden="true">↗</span>
           </Link>
         ))}
@@ -228,13 +110,12 @@ function LessonPreviewPage() {
             key={definition.id}
             videoId={definition.video.videoId}
             title={definition.title}
-            isPlaceholder={definition.video.isPlaceholder}
             purpose="preview"
           />
         )}
         <p className="notice">
-          O conteúdo completo, com textos, imagens e atividades, estará
-          disponível na plataforma.
+          Acesse a área do aluno para estudar o conteúdo completo, com textos,
+          imagens e atividades do curso.
         </p>
         <nav className="lesson-navigation" aria-label="Navegação entre aulas">
           <div>
@@ -277,29 +158,15 @@ function NotFound() {
 
 function PublicApp() {
   return (
-    <>
+    <div className="public-shell">
       <ScrollToPage />
       <a href="#conteudo" className="skip-link">
         Pular para o conteúdo
       </a>
-      <header className="site-header">
-        <Link className="brand" to="/" aria-label="AWOTech Learning, início">
-          <span className="brand-icon" aria-hidden="true">
-            a<span>↗</span>
-          </span>
-          <span>
-            AWOTech <small>LEARNING</small>
-          </span>
-        </Link>
-        <nav aria-label="Navegação principal">
-          <NavLink to="/cursos">Cursos</NavLink>
-          <Link to="/app">Área do aluno</Link>
-          <span className="preview-label">Prévia da plataforma</span>
-        </nav>
-      </header>
-      <main id="conteudo" className="container">
+      <PublicHeader />
+      <main id="conteudo" className="container public-container">
         <Routes>
-          <Route path="/" element={<CatalogPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route
             path="/login"
             element={<AuthPage key="login" mode="login" />}
@@ -316,7 +183,7 @@ function PublicApp() {
             path="/redefinir-senha"
             element={<AuthPage key="reset" mode="reset" />}
           />
-          <Route path="/cursos" element={<CatalogPage />} />
+          <Route path="/cursos" element={<LandingPage />} />
           <Route path="/cursos/:courseId" element={<CoursePage />} />
           <Route
             path="/cursos/:courseId/aulas/:lessonId/previa"
@@ -333,7 +200,7 @@ function PublicApp() {
         <span>AWOTech Learning</span>
         <span>Aprenda criando o futuro.</span>
       </footer>
-    </>
+    </div>
   );
 }
 

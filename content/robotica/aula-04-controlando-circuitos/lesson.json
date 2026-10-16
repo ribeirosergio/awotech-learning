@@ -22,7 +22,12 @@
     "breadboard",
     "jumper"
   ],
-  "labStatus": "planned",
+  "labStatus": "available",
+  "lab": {
+    "kind": "blink-led",
+    "signalPin": 13,
+    "resistorOhms": 220
+  },
   "source": {
     "file": "Apostila - Curso de Robótica.docx",
     "section": "Aula 4 — Controlando os Circuitos"
@@ -31,11 +36,25 @@
   "hasLab": true,
   "code": {
     "language": "arduino",
-    "starterCode": "// Rascunho da aula. A execução será adicionada no AWOTech Lab.\n\nvoid setup() {\n\n}\n\nvoid loop() {\n\n}\n"
+    "starterCode": "// Configure a saída em setup e faça o LED piscar em loop.\n// Monte o circuito no pino 13.\n\nvoid setup() {\n  pinMode(13, OUTPUT);\n}\n\nvoid loop() {\n  // Use digitalWrite e delay para acender, esperar e apagar.\n}\n"
   },
   "video": {
     "provider": "youtube",
     "videoId": "hcuA5wkgUNA",
     "isPlaceholder": true
+  },
+  "completion": {
+    "activities": [
+      {
+        "id": "blink-led",
+        "title": "Montar e executar o LED piscando",
+        "available": true
+      },
+      {
+        "id": "traffic-light",
+        "title": "Montar e executar o semáforo (em preparação)",
+        "available": false
+      }
+    ]
   }
 }

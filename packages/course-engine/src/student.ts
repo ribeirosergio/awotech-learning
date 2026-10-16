@@ -26,8 +26,8 @@ export function hasCourseAccess(
   );
 }
 
-/** Conta somente aulas que ainda pertencem à configuração atual do curso. */
-export function calculateProgress(
+/** Somente o trecho contínuo concluído libera aulas; registros após lacunas são preservados. */
+export function getLessonProgression(
   course: { id: string; lessonIds: string[] },
   records: ProgressRecord[],
 ) {
@@ -36,16 +36,30 @@ export function calculateProgress(
       .filter((row) => row.course_id === course.id && row.completed)
       .map((row) => row.lesson_id),
   );
-  const completed = course.lessonIds.filter((id) =>
-    completedIds.has(id),
-  ).length;
+  let completed = 0;
+  for (const id of course.lessonIds) {
+    if (!completedIds.has(id)) break;
+    completed++;
+  }
+  return {
+    completedIds: new Set(course.lessonIds.slice(0, completed)),
+    unlockedIds: new Set(course.lessonIds.slice(0, completed + 1)),
+    reopenableLessonId: course.lessonIds[completed - 1],
+    completed,
+    nextLessonId: course.lessonIds[completed] ?? course.lessonIds[0],
+  };
+}
+
+export function calculateProgress(
+  course: { id: string; lessonIds: string[] },
+  records: ProgressRecord[],
+) {
+  const { completed, nextLessonId } = getLessonProgression(course, records);
   const total = course.lessonIds.length;
   return {
     completed,
     total,
     percent: total ? Math.round((completed / total) * 100) : 0,
-    nextLessonId:
-      course.lessonIds.find((id) => !completedIds.has(id)) ??
-      course.lessonIds[0],
+    nextLessonId,
   };
 }

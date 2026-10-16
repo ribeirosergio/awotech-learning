@@ -22,7 +22,10 @@
     "switch",
     "battery-9v"
   ],
-  "labStatus": "planned",
+  "labStatus": "available",
+  "lab": {
+    "kind": "electric-circuits"
+  },
   "source": {
     "file": "Apostila - Curso de Robótica.docx",
     "section": "Aula 3 — Circuitos Elétricos"
@@ -34,5 +37,19 @@
     "provider": "youtube",
     "videoId": "hcuA5wkgUNA",
     "isPlaceholder": true
+  },
+  "completion": {
+    "activities": [
+      {
+        "id": "battery-led",
+        "title": "Montar e acender o LED com protoboard",
+        "available": true
+      },
+      {
+        "id": "button-led",
+        "title": "Acender e apagar o LED pelo botão",
+        "available": true
+      }
+    ]
   }
 }

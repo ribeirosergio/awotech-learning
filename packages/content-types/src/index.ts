@@ -24,6 +24,23 @@ export const lessonSchema = z.object({
   summary: z.string().min(1),
   type: z.enum(['theory', 'practice', 'project']),
   hasLab: z.boolean(),
+  completion: z
+    .object({
+      activities: z.array(
+        z.object({ id, title: z.string().min(1), available: z.boolean() }),
+      ),
+    })
+    .optional(),
+  lab: z
+    .discriminatedUnion('kind', [
+      z.object({
+        kind: z.literal('blink-led'),
+        signalPin: z.number().int().min(0).max(13),
+        resistorOhms: z.literal(220),
+      }),
+      z.object({ kind: z.literal('electric-circuits') }),
+    ])
+    .optional(),
   code: z
     .object({
       language: z.enum([
@@ -44,7 +61,7 @@ export const lessonSchema = z.object({
   activities: z.array(z.string().min(1)),
   activitiesInContent: z.boolean().optional(),
   requiredComponents: z.array(id),
-  labStatus: z.enum(['not-applicable', 'planned']),
+  labStatus: z.enum(['not-applicable', 'planned', 'available']),
   video: z
     .object({
       provider: z.literal('youtube'),

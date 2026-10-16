@@ -1,49 +1,77 @@
 .student-shell {
   min-height: 100vh;
+  display: flow-root;
+  background:
+    radial-gradient(ellipse at 95% 0%, #b8d08b55, transparent 50%),
+    linear-gradient(160deg, #d5e2ce, #e1e9d7 60%, #c6d8c1);
 }
 .student-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 32px;
-  border-bottom: 1px solid #dce0d6;
-  background: white;
+  padding: 20px 28px;
+  margin: 20px 24px;
+  border-radius: 22px;
+  background: #163b32;
+  color: #f6f7ec;
+  box-shadow: 0 8px 24px #163b3218;
+  flex-wrap: wrap;
+}
+.student-header .brand {
+  margin-right: auto;
+}
+.student-top-navigation {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.student-top-navigation a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.student-top-navigation a:hover {
+  background: #ffffff15;
+}
+.student-top-navigation a.active {
+  background: #d4f477;
+  color: #163b32;
+}
+.student-header-email {
+  font-size: 0.75rem;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #d2dfcc;
+}
+.student-header .button {
+  margin: 0;
+  min-width: 88px;
+}
+.student-header .brand small {
+  color: #d4f477;
+}
+.student-header a:focus-visible {
+  outline-color: #d4f477;
 }
 .student-header > a:last-child {
   font-size: 0.85rem;
 }
 .student-layout {
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
-  max-width: 1800px;
+  grid-template-columns: minmax(0, 1fr);
   margin: 0 auto;
-}
-.student-navigation {
-  min-width: 0;
-  padding: 32px 20px;
-  border-right: 1px solid #dce0d6;
-}
-.student-navigation nav {
-  display: grid;
-  gap: 8px;
-}
-.student-navigation nav a {
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 0.9rem;
-}
-.student-navigation nav a.active {
-  background: #e4ecd7;
-  font-weight: 650;
-}
-.student-email {
-  margin: 32px 0 8px;
-  font-size: 0.8rem;
-  overflow-wrap: anywhere;
+  padding: 0 24px 32px;
+  gap: 24px;
 }
 .student-main {
-  padding: 40px 32px 60px;
+  padding: 12px 0 48px;
   min-width: 0;
 }
 .student-main h1 {
@@ -54,12 +82,106 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
   gap: 24px;
 }
+.student-courses > .student-course-card {
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.3fr) minmax(0, 1fr);
+  column-gap: 32px;
+  align-items: start;
+}
+.student-courses .student-course-banner {
+  grid-column: 1;
+  grid-row: 1 / 5;
+  align-self: stretch;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  min-height: 260px;
+}
+.student-courses .student-course-banner > span:last-child {
+  align-self: center;
+  margin-block: auto;
+  font-size: clamp(2rem, 4vw, 4rem);
+}
+.account-layout .account-card {
+  max-width: none;
+}
 .student-course-card {
   border: 1px solid #dce0d6;
   border-radius: 16px;
-  background: white;
+  background: #edf2e5;
   padding: 28px;
-  max-width: 800px;
+  max-width: 1000px;
+  box-shadow: 0 6px 22px #163b3208;
+}
+.student-welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding: 32px;
+  border-radius: 22px;
+  background: #163b32;
+  color: #f6f7ec;
+}
+.student-welcome h1 {
+  margin-bottom: 12px;
+}
+.student-welcome p {
+  margin-bottom: 0;
+  color: #d2dfcc;
+}
+.student-welcome .eyebrow {
+  color: #d4f477;
+  margin-bottom: 16px;
+}
+.student-welcome > span {
+  font-size: 5rem;
+  color: #d4f477;
+}
+.student-course-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #c5b5f4;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 28px;
+}
+.student-course-banner > span:last-child {
+  font: 2rem var(--font-mono);
+}
+.account-intro {
+  max-width: 720px;
+  color: #53675a;
+}
+.account-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 0.45fr);
+  gap: 24px;
+  align-items: start;
+}
+.account-card {
+  width: 100%;
+}
+.account-security {
+  background: #c5b5f4;
+  padding: 28px;
+  border-radius: 20px;
+}
+.account-security h2 {
+  font-size: 1.3rem;
+}
+.account-symbol {
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 24px;
+}
+.account-email {
+  overflow-wrap: anywhere;
+  font-weight: 600;
 }
 .student-course-card h2 {
   font-size: 1.4rem;
@@ -109,8 +231,27 @@
 }
 .student-course-layout {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 32px;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+}
+.student-lesson-sidebar {
+  background: #e7eedc;
+  border: 1px solid #163b3220;
+  border-radius: 18px;
+  padding: 22px 14px;
+}
+.student-lesson-body {
+  padding: 28px;
+  border: 1px solid #163b3220;
+  border-radius: 22px;
+  background: #edf2e5;
+}
+.student-lesson-sidebar nav a.active {
+  background: #163b32;
+  color: #f5f5e9;
+}
+.student-lesson-sidebar nav a.active > span {
+  color: #d4f477;
 }
 .student-lesson-body {
   min-width: 0;
@@ -121,6 +262,46 @@
 .student-lesson-sidebar nav a > span {
   color: #56703e;
   min-width: 20px;
+}
+.student-lesson-sidebar nav .locked-lesson {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+}
+.student-lesson-sidebar nav .locked-lesson,
+.student-lesson-body .lesson-row[aria-disabled='true'],
+.locked-navigation {
+  color: #637067;
+  background: #f0f2ec;
+  cursor: not-allowed;
+}
+.student-lesson-body .lesson-row[aria-disabled='true']:hover {
+  background: #f0f2ec;
+}
+.locked-navigation {
+  font-size: 0.85rem;
+}
+.locked-lesson-tooltip {
+  position: fixed;
+  z-index: 60;
+  width: min(260px, calc(100vw - 32px));
+  padding: 12px 16px;
+  border: 1px solid #d4f47760;
+  border-radius: 12px;
+  background: #163b32;
+  color: #f6f7ec;
+  box-shadow: 0 6px 20px #163b3230;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  pointer-events: none;
+}
+.locked-lesson:focus-visible,
+.locked-navigation:focus-visible,
+.lesson-row[aria-disabled='true']:focus-visible {
+  outline: 3px solid #557716;
+  outline-offset: 3px;
 }
 .video-pending {
   border-radius: 12px;
@@ -159,7 +340,34 @@
   font-size: 0.85rem;
   margin-top: 12px;
 }
+.completion-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+.completion-section h2 {
+  font-size: 1.2rem;
+}
+.tracked-video-container {
+  min-height: 200px;
+  aspect-ratio: 16/9;
+  background: #e9eee2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.tracked-video-container iframe {
+  width: 100%;
+  height: 100%;
+}
 @media (max-width: 1100px) {
+  .student-header-email {
+    display: none;
+  }
+  .account-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .student-course-layout {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -173,34 +381,68 @@
     overflow-x: auto;
     padding: 4px 4px 12px;
   }
-  .student-lesson-sidebar nav a {
+  .student-lesson-sidebar nav a,
+  .student-lesson-sidebar nav .locked-lesson {
     flex-shrink: 0;
     max-width: 220px;
   }
 }
 @media (max-width: 760px) {
-  .student-layout {
+  .student-header {
+    gap: 16px;
+  }
+  .student-header .brand {
+    order: 0;
+  }
+  .student-logout {
+    order: 1;
+  }
+  .student-top-navigation {
+    order: 2;
+    width: 100%;
+    border-top: 1px solid #ffffff20;
+    padding-top: 12px;
+  }
+  .student-top-navigation a {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 8px;
+  }
+  .student-courses > .student-course-card {
     grid-template-columns: minmax(0, 1fr);
   }
-  .student-navigation {
-    padding: 16px 20px;
-    border-right: 0;
-    border-bottom: 1px solid #dce0d6;
+  .student-courses .student-course-banner {
+    grid-column: auto;
+    grid-row: auto;
+    flex-direction: row;
+    min-height: 110px;
+    margin-bottom: 24px;
+    align-items: center;
   }
-  .student-navigation nav {
-    display: flex;
-    flex-wrap: wrap;
+  .student-courses .student-course-banner > span:last-child {
+    margin: 0;
+    font-size: 2rem;
   }
-  .student-navigation > .eyebrow {
-    display: none;
-  }
-  .student-email {
-    margin-top: 12px;
+  .student-layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 16px 24px;
+    gap: 16px;
   }
   .student-main {
-    padding: 28px 20px;
+    padding: 8px 0 28px;
   }
   .student-header {
+    padding: 18px;
+    margin: 16px;
+  }
+  .student-welcome {
+    padding: 24px;
+  }
+  .student-welcome > span {
+    display: none;
+  }
+  .student-lesson-body,
+  .student-course-card {
     padding: 20px;
   }
 }

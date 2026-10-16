@@ -7,7 +7,13 @@ Esta etapa integra a aplicação ao SDK oficial do Supabase, adiciona autentica�
 1. Crie sua organização/projeto no [painel Supabase](https://supabase.com/dashboard). Guarde a senha administrativa do banco fora do frontend.
 2. No SQL Editor do projeto de desenvolvimento, execute, nesta ordem, os arquivos completos:
    - `supabase/migrations/202610140001_learning_access.sql`;
-   - `supabase/migrations/202610140002_lesson_progress.sql`.
+   - `supabase/migrations/202610140002_lesson_progress.sql`;
+   - `supabase/migrations/202610150001_sequential_lessons.sql`;
+   - `supabase/migrations/202610150002_completion_requirements.sql`;
+   - `supabase/migrations/202610160001_student_profiles.sql`.
+
+   Aplique somente as migrations ainda não executadas, em ordem. A quarta adiciona evidências de conclusão; a quinta adiciona perfis e o preenchimento automático após o cadastro. As novas migrations não foram executadas remotamente pelo assistente.
+
 3. Em Authentication, habilite o provedor Email com senha e configure a confirmação de email. Esta aplicação trata tanto cadastro com confirmação quanto sessão imediata, conforme a configuração do projeto. Para uso público, configure o serviço de email/SMTP no Supabase conforme os limites e orientações do provedor.
 4. Em Authentication → URL Configuration, defina a Site URL do ambiente e autorize os retornos de cadastro e recuperação:
 
@@ -33,7 +39,7 @@ A `.env.example` na raiz aponta para o mesmo procedimento. Não salve esses plac
 
 ## Usuário e acesso manual
 
-1. Abra `/cadastro`, informe email/senha e confirme o email quando solicitado.
+1. Abra `/cadastro`, informe os dados do aluno, email/senha e confirme o email quando solicitado.
 2. Entre em `/login`. Uma conta recém-criada não recebe cursos automaticamente.
 3. No SQL Editor, como administrador, abra `supabase/manual/grant-course-access.sql`, substitua `dev@example.com` pelo email cadastrado e execute. A consulta deve retornar exatamente uma concessão para `robotica-basico`, com início imediato e 12 meses de vigência.
 4. Volte à interface e clique em “Atualizar meus acessos” ou recarregue a página. O curso passa a aparecer em `/app/meus-cursos`.
@@ -52,7 +58,7 @@ No MVP, cada curso tem um `productId` canônico igual ao seu `id`. Isso permite 
 | `has_course_access(text)` | Função invoker que usa usuário autenticado, produto e vigência no relógio do PostgreSQL.                                               |
 | `stamp_lesson_progress`   | Trigger que define `updated_at` e normaliza `completed_at` pelo relógio do banco. O cliente não determina esses horários.              |
 
-Identidade e senha pertencem ao Supabase Auth (`auth.users`). Não há tabela duplicada de credenciais nem necessidade de `profiles` nesta fase: a interface utiliza o email da identidade autenticada.
+Identidade, e-mail e senha pertencem ao Supabase Auth (`auth.users`). A tabela `profiles` guarda somente dados do aluno com RLS de leitura/escrita próprias. Veja [Perfil do aluno](perfil-aluno.md) para campos, migration e validação.
 
 O CourseGuard consulta concessões próprias e avalia `starts_at <= agora < expires_at`, ou acesso sem expiração. O relógio da interface parte do horário retornado pelo banco e avança com tempo monotônico. Falhas na consulta negam o acesso em vez de presumir liberação. O retorno à aba revalida os dados; o instante de expiração também atualiza a interface. As políticas do banco continuam verificando a vigência em cada escrita, inclusive se o navegador estiver desatualizado após uma revogação.
 
@@ -86,7 +92,9 @@ O Course Engine valida os arquivos e determina sequência, navegação e totais.
 
 ## Progresso e editor
 
-A conclusão é manual, tanto em aulas teóricas quanto práticas. O usuário pode desfazer a conclusão. A interface só atualiza o progresso após a confirmação do Supabase; uma falha mantém o estado anterior. O cálculo considera apenas os IDs da sequência atual, evitando contar aulas removidas ou registros duplicados. “Meus cursos”, curso e sidebar exibem concluídas/total e percentual, e o botão Continuar leva à primeira pendente.
+A confirmação de conclusão é manual, após o vídeo e as atividades obrigatórias serem registrados no Supabase. Apenas a primeira aula está inicialmente disponível; concluir uma aula libera a seguinte. As anteriores continuam disponíveis para revisão. A lista, a sidebar, os links de navegação e a rota direta respeitam essa sequência. Só a última conclusão válida pode ser desfeita, voltando a bloquear as seguintes. Uma falha ao salvar não libera a próxima aula. Leia `docs/requisitos-conclusao.md` para critérios, atividades indisponíveis e limites da validação client-side.
+
+O cálculo considera apenas o trecho contínuo concluído da sequência atual, evitando contar aulas removidas, duplicadas ou conclusões após lacunas. Registros antigos fora de ordem são preservados e voltam a contar quando as anteriores forem concluídas. “Meus cursos”, curso e sidebar exibem concluídas/total e percentual, e o botão Continuar leva à primeira pendente. O trigger da terceira migration impõe a mesma regra para INSERT/UPDATE diretos no banco, verifica entitlement e serializa alterações do mesmo aluno/curso. Somente os IDs de autorização são espelhados na função SQL; conteúdo pedagógico permanece versionado nos arquivos. Ao criar cursos ou alterar a ordem, atualizar a função em nova migration e o teste de alinhamento.
 
 `CodeEditor` encapsula Monaco e recebe `value`, `onChange`, `language`, `readOnly`, `height` e `options`. `arduino` usa o realce C/C++ existente; não há linguagem Arduino própria, parser, compilador ou execução. Os workers são publicados localmente pelo Vite, sem CDN. O editor carrega apenas quando uma aula configurada possui `code`.
 
@@ -97,9 +105,9 @@ As aulas 4–7 possuem um rascunho de programação configurado, com estruturas 
 1. Faça cadastro, confirme email e entre; recarregue a página e confirme a permanência da sessão.
 2. Sem concessão, verifique a lista vazia em Meus cursos e tente abrir `/app/curso/robotica-basico` diretamente: deve negar acesso.
 3. Conceda acesso pelo SQL administrativo e atualize a interface.
-4. Abra o curso, uma aula e o material completo. Marque como concluída; o progresso deve ir a 1/10 (10%). Recarregue e confirme a persistência.
-5. Navegue para a próxima aula, volte à lista e teste também desfazer a conclusão.
-6. Abra a aula 4. Confira o placeholder AWOTech Lab e o Monaco. Digite no editor e recarregue para recuperar o rascunho.
+4. Abra a primeira aula: conclusão bloqueada antes do vídeo. Pular ao fim não deve bastar. Assista dentro da plataforma até o checklist registrar a cobertura e então marque como concluída: 1/10 (10%). Recarregue e confirme a persistência.
+5. Confirme que a segunda aula foi liberada e a terceira continua bloqueada, inclusive abrindo sua URL diretamente. Conclua a segunda, revise a primeira e confirme que apenas a segunda pode voltar a pendente. Desfaça a segunda e depois a primeira: a segunda deve bloquear novamente. Recarregue para verificar a persistência. Execute `supabase/tests/rls-smoke.sql` no SQL Editor para testar também a proteção do banco sem manter dados de teste.
+6. Na aula 3, teste as montagens LED com protoboard e LED com botão. Depois, conclua a terceira aula e abra a quarta para testar o LED programável com Monaco. Siga `docs/awotech-lab.md`; código e fios devem ser restaurados após reload, sem iniciar automaticamente a execução do Arduino.
 7. Teste acesso com início futuro e expirado; ambos devem ser negados. Use outra conta sem concessão para conferir isolamento entre alunos.
 8. Saia e tente uma rota `/app` diretamente; deve voltar ao login. O progresso da conta anterior não deve aparecer ao entrar com outro usuário.
 9. Solicite recuperação em `/esqueci-minha-senha`; abra o email, defina nova senha em `/redefinir-senha`, saia e entre com a nova senha. Links inválidos/expirados devem permitir solicitar outro link.

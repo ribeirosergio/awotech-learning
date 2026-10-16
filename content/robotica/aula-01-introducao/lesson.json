@@ -27,5 +27,8 @@
     "provider": "youtube",
     "videoId": "hcuA5wkgUNA",
     "isPlaceholder": true
+  },
+  "completion": {
+    "activities": []
   }
 }

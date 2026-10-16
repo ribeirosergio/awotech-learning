@@ -3,6 +3,8 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthProvider';
 import { PlatformUnavailable } from './RequireAuth';
 import { authRedirect, supabase } from '../lib/supabase';
+import StudentProfileFields from '../components/StudentProfileFields';
+import { readProfile } from '../lib/student-profile';
 
 type Mode = 'login' | 'signup' | 'forgot' | 'reset';
 const labels = {
@@ -78,6 +80,15 @@ export default function AuthPage({ mode }: { mode: Mode }) {
       setError('As senhas não coincidem.');
       return;
     }
+    let profile;
+    if (mode === 'signup') {
+      try {
+        profile = readProfile(form);
+      } catch (error) {
+        setError((error as Error).message);
+        return;
+      }
+    }
     setBusy(true);
     setError('');
     setMessage('');
@@ -93,7 +104,10 @@ export default function AuthPage({ mode }: { mode: Mode }) {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: authRedirect('/login') },
+          options: {
+            emailRedirectTo: authRedirect('/login'),
+            data: { student_profile: profile },
+          },
         });
         if (error) throw error;
         if (data.session) navigate('/app', { replace: true });
@@ -134,7 +148,7 @@ export default function AuthPage({ mode }: { mode: Mode }) {
   }
 
   return (
-    <section className="auth-card">
+    <section className={`auth-card${mode === 'signup' ? ' signup-card' : ''}`}>
       <p className="eyebrow">AWOTECH LEARNING</p>
       <h1>{labels[mode][0]}</h1>
       {error && (
@@ -149,6 +163,7 @@ export default function AuthPage({ mode }: { mode: Mode }) {
       )}
       {!done && (
         <form onSubmit={submit}>
+          {mode === 'signup' && <StudentProfileFields disabled={busy} />}
           {mode !== 'reset' && (
             <label>
               Email

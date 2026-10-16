@@ -34,5 +34,14 @@
     "provider": "youtube",
     "videoId": "hcuA5wkgUNA",
     "isPlaceholder": true
+  },
+  "completion": {
+    "activities": [
+      {
+        "id": "practice-pending",
+        "title": "Atividade prática em preparação",
+        "available": false
+      }
+    ]
   }
 }

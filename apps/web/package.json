@@ -9,8 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@awotech/arduino-runtime": "workspace:*",
     "@awotech/content-types": "workspace:*",
     "@awotech/course-engine": "workspace:*",
+    "@awotech/simulator": "workspace:*",
     "@awotech/ui": "workspace:*",
     "@supabase/supabase-js": "^2.117.3",
     "monaco-editor": "^0.57.0",

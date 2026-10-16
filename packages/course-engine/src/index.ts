@@ -8,8 +8,19 @@ import {
   type LessonDefinition,
   type LessonPreview,
 } from '@awotech/content-types';
+export {
+  getCompletionChecklist,
+  videoCoverage,
+  mergeWatchedRanges,
+  PlaybackCoverage,
+} from './completion';
+export type { LessonEvidence, WatchedRange } from './completion';
 
-export { hasCourseAccess, calculateProgress } from './student';
+export {
+  hasCourseAccess,
+  calculateProgress,
+  getLessonProgression,
+} from './student';
 
 export interface LessonContent {
   definition: LessonDefinition;
@@ -116,6 +127,15 @@ export function createCourseCatalog(input: ContentInput) {
     });
   }
   for (const { definition: lesson } of lessons.values()) {
+    if (
+      lesson.lab &&
+      (!lesson.hasLab ||
+        (lesson.lab.kind === 'blink-led' && !lesson.code) ||
+        lesson.labStatus !== 'available')
+    )
+      throw new Error(`Configuração de laboratório incompleta: ${lesson.id}`);
+    if (lesson.labStatus === 'available' && !lesson.lab)
+      throw new Error(`Laboratório disponível sem configuração: ${lesson.id}`);
     if (!courses.get(lesson.courseId)?.lessonIds.includes(lesson.id)) {
       throw new Error(`Aula sem curso correspondente: ${lesson.id}`);
     }

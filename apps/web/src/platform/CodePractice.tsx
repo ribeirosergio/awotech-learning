@@ -1,5 +1,6 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import type { LessonDefinition } from '@awotech/content-types';
+import { useCodeDraft } from './useCodeDraft';
 
 const CodeEditor = lazy(() => import('../components/CodeEditor'));
 
@@ -12,24 +13,11 @@ export default function CodePractice({
 }) {
   const config = lesson.code;
   const key = `awotech:workspace:${userId}:${lesson.courseId}:${lesson.id}:code`;
-  const [storageError, setStorageError] = useState(false);
-  const [value, setValue] = useState(() => {
-    try {
-      return localStorage.getItem(key) ?? config?.starterCode ?? '';
-    } catch {
-      return config?.starterCode ?? '';
-    }
-  });
+  const { value, change, storageError } = useCodeDraft(
+    key,
+    config?.starterCode ?? '',
+  );
   if (!config) return null;
-  function change(next: string) {
-    setValue(next);
-    try {
-      localStorage.setItem(key, next);
-      setStorageError(false);
-    } catch {
-      setStorageError(true);
-    }
-  }
   return (
     <section className="practice-section" aria-label="Prática de código">
       <h2>Seu espaço de código</h2>

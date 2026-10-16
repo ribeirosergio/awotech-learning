@@ -10,16 +10,16 @@ O bootstrap usa Tailwind pelo plugin do Vite e mantém scripts de formatação, 
 
 ## Limites entre pacotes
 
-| Pacote            | Responsabilidade atual                                                        | Evolução prevista                                                                          |
-| ----------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `content-types`   | Schemas e tipos de conteúdo, produto, kit e componente                        | Configuração de desafios e regras de conclusão quando houver implementação                 |
-| `course-engine`   | Carregar/validar dados recebidos, conferir referências e navegar na sequência | Regras de conclusão e progresso                                                            |
-| `arduino-runtime` | Contratos de IR, diagnóstico e eventos                                        | Gramática, parser e executor do subconjunto Arduino; sem `eval` ou regex solta como parser |
-| `simulator`       | Contratos de componentes, conexões, circuito e estado                         | Validador de montagem, tempo virtual e atualização de componentes                          |
-| `ui`              | Badge e embed de vídeo                                                        | Elementos visuais reutilizáveis; Monaco na primeira experiência de código                  |
-| `web`             | Adaptação Vite dos arquivos, rotas e apresentação                             | Workspace guiado, auth e integrações                                                       |
+| Pacote            | Responsabilidade atual                                                        | Evolução prevista                                                          |
+| ----------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `content-types`   | Schemas e tipos de conteúdo, produto, kit e componente                        | Configuração de desafios e regras de conclusão quando houver implementação |
+| `course-engine`   | Carregar/validar dados recebidos, conferir referências e navegar na sequência | Regras de conclusão e progresso                                            |
+| `arduino-runtime` | Lexer, parser limitado, IR e execução de setup/loop                           | Expandir o subconjunto conforme as próximas atividades; sem `eval`         |
+| `simulator`       | Montagem do LED, validação topológica, saídas digitais e tempo virtual        | Novos cenários e componentes conforme a apostila                           |
+| `ui`              | Badge e embed de vídeo                                                        | Elementos visuais reutilizáveis; Monaco na primeira experiência de código  |
+| `web`             | Adaptação Vite dos arquivos, rotas e apresentação                             | Workspace guiado, auth e integrações                                       |
 
-O runtime não importa React nem o simulador. O simulador pode consumir tipos de eventos do runtime. O course engine não importa Vite nem lê arquivos diretamente; recebe dados do adaptador. A aplicação não importa runtime/simulador enquanto não existir laboratório, evitando carregar código desnecessário.
+O runtime não importa React nem o simulador. O simulador consome instruções e eventos do runtime e controla o relógio. O course engine não importa Vite nem lê arquivos diretamente; recebe dados do adaptador. A aplicação carrega o laboratório e os dois pacotes sob demanda na aula configurada, após os guardas de autenticação, acesso e sequência. O primeiro cenário está documentado em `docs/awotech-lab.md`.
 
 ## Conteúdo
 
@@ -48,15 +48,11 @@ Os nomes das pastas são organização interna; as URLs usam IDs estáveis:
 
 Rotas e IDs desconhecidos exibem uma página de não encontrado. A URL anterior `/curso/:courseId/aula/:lessonId` redireciona para a prévia correspondente. O site público apresenta um parágrafo e vídeo de apresentação; `status` é editorial e não substitui autorização. `/app` exige sessão, e o CourseGuard valida produto, início e expiração. Não há checkout nesta etapa.
 
-`requiredComponents` descreve os componentes documentados para a aula, não quantidades de um kit. Tipos genéricos são mantidos quando o modelo físico não está confirmado. `type`, `hasLab` e `code` configuram a apresentação da aula e do editor. O rascunho inicial das aulas 4–7 contém apenas `setup` e `loop` vazios, sem resolver pinagens. Não existem `challenge.json` ou `circuit.json` executáveis.
+`requiredComponents` descreve os componentes documentados para a aula, não quantidades de um kit. `type`, `hasLab`, `code` e `lab` configuram a apresentação. A aula 3 usa `electric-circuits`, sem código; a aula 4 usa `blink-led`, com D13 e resistor de 220 Ω. As bancadas compartilham terminais e fios. `completion.activities` define os requisitos pedagógicos, espelhados como IDs/disponibilidade na função SQL. O player e os labs registram evidências do próprio aluno via RPC; o trigger exige vídeo e todas as práticas para novas conclusões. Aulas 5–7 mantêm rascunhos/placeholders; práticas indisponíveis, inclusive semáforo da aula 4, bloqueiam conclusão. Limites de confiança dos relatos client-side estão em `docs/requisitos-conclusao.md`.
 
 ## Próximo incremento
 
-1. Resolver e registrar a pinagem do LED da aula 4, harmonizando imagem, código e instruções.
-2. Criar configuração do circuito/desafio, reutilizando o Monaco já integrado com workers locais.
-3. Implementar gramática para `setup`, `loop`, `pinMode`, `digitalWrite` e `delay`, com diagnósticos compreensíveis. Código não suportado deve ser rejeitado, nunca ignorado ou executado como JavaScript.
-4. Implementar montagem guiada, validação separada do código, execução interrompível e feedback do LED.
-5. Validar o desafio por comportamento para futura conclusão automática; a persistência atual usa conclusão manual.
+O primeiro cenário de LED já cobre configuração, gramática limitada, montagem guiada, validação separada, execução interrompível e feedback visual. A pinagem foi harmonizada em D13, seguindo o código da apostila. A evolução seguinte pode ampliar as atividades conforme a apostila e introduzir validação de desafios por comportamento, com autorização específica. A persistência atual continua usando conclusão manual.
 
 Supabase Auth/RLS, acesso manual e progresso estão implementados no frontend e nas migrations versionadas. O projeto Cloud está conectado ao ambiente local, e Auth/tabelas/RPC foram verificados com a chave pública. A validação de usuários reais e isolamento por RLS ainda está pendente. O guia é `docs/plataforma-supabase.md`. Checkout e operações de kits não foram implementados. O produto continua sem preço e sem compra habilitada.
 

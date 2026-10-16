@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import type { LessonContent } from '@awotech/course-engine';
-import { Badge, YouTubeVideo } from '@awotech/ui';
+import { Badge } from '@awotech/ui';
+import { TrackedLessonVideo } from './TrackedLessonVideo';
 import { catalog, resolveLessonImage } from './content';
 
 const Markdown = lazy(() => import('react-markdown'));
@@ -11,12 +12,7 @@ export function LessonMaterial({ lesson }: { lesson: LessonContent }) {
   return (
     <>
       {definition.video && (
-        <YouTubeVideo
-          key={definition.id}
-          videoId={definition.video.videoId}
-          title={definition.title}
-          isPlaceholder={definition.video.isPlaceholder}
-        />
+        <TrackedLessonVideo key={definition.id} lesson={definition} />
       )}
       <div className="prose">
         <Suspense
@@ -94,7 +90,7 @@ export function LessonMaterial({ lesson }: { lesson: LessonContent }) {
           </p>
         </section>
       )}
-      {definition.hasLab && (
+      {definition.hasLab && !definition.lab && (
         <div className="lab-notice">
           <span aria-hidden="true">⌘</span>
           <div>
